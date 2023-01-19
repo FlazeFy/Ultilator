@@ -72,3 +72,66 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/*Layout*/
+.container{
+  border:2px solid #f2f2f2;
+  padding:10px;
+  border-radius: 8px;
+}
+
+/*Button*/
+.btn-count{
+  width: 100%;
+  margin: 6px;
+  text-align: center;
+  padding: 6px;
+  background: #4D6DDD;
+  color: whitesmoke !important;
+}
+.btn-icon{
+  width: 45px;
+  height: 45px;
+  margin: 6px;
+  text-align: center;
+  padding: 6px;
+  background: transparent;
+  border: 2px solid #414141;
+  color: #414141;
+}
+.btn-icon.social{
+  border-radius:100% !important;
+}
+.btn-icon:hover{
+  background: #3EAF7C;
+  color: whitesmoke;
+  border: 2px solid#3EAF7C;
+}
+
+.btn-count:hover{
+  background: #3a60ea;
+}
+
+/*Input*/
+input.form-control, input.form-control:disabled, select.form-select{
+  background: #212121;
+  border: none;
+  margin: 6px;
+  color:#3EAF7C !important;
+  font-weight: 500;
+}
+input.form-control:focus{
+  background: #212121;
+  box-shadow: none;
+}
+
+/* Typography */
+.text-primary{
+  color: #3EAF7C !important;
+}
+.brand{
+  font-weight: 500 !important;
+}
+.container-title{
+  color:whitesmoke !important;
+}

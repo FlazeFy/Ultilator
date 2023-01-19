@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h2>Ultilator is bla bla</h2>
+    <h2><span class="text-primary brand">Ultilator</span> is bla bla</h2>
   </div>
 </template>

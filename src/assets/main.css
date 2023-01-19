@@ -4,7 +4,10 @@
   font-weight: normal;
   padding-inline:10vh !important;
   width: 100%;
-  margin-top: 10vh;
+  display: block;
+  margin-inline: auto;
+  margin-top: 5vh;
+  max-width: 1260px !important;
 }
 
 .nav-link{

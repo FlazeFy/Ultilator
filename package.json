@@ -9,7 +9,11 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/vue-fontawesome": "^3.0.2",
     "vue": "^3.2.45",
+    "vue-fontawesome": "^0.0.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
