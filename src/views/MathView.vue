@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h2>Ultilator is bla bla</h2>
+    <h2>Math</h2>
   </div>
 </template>
