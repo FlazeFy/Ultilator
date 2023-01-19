@@ -95,7 +95,7 @@ body {
 }
 
 /*Input*/
-input.form-control, input.form-control:disabled{
+input.form-control, input.form-control:disabled, select.form-select{
   background: #212121;
   border: none;
   margin: 6px;
