@@ -89,6 +89,24 @@ body {
   background: #4D6DDD;
   color: whitesmoke !important;
 }
+.btn-icon{
+  width: 45px;
+  height: 45px;
+  margin: 6px;
+  text-align: center;
+  padding: 6px;
+  background: transparent;
+  border: 2px solid #414141;
+  color: #414141;
+}
+.btn-icon.social{
+  border-radius:100% !important;
+}
+.btn-icon:hover{
+  background: #3EAF7C;
+  color: whitesmoke;
+  border: 2px solid#3EAF7C;
+}
 
 .btn-count:hover{
   background: #3a60ea;
