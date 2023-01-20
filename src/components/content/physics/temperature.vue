@@ -10,53 +10,62 @@
                 let a = parseInt(document.getElementById("number_a_temp").value);
                 let opt = document.getElementById("tempFrom").value;
 			    let opt2 = document.getElementById("tempTo").value;
+                let a_style = document.getElementById("number_a_temp").style;
                 var res
 
-                // Celcius to Fahrenheit
-                if((opt == 'c') && (opt2 == 'f')){
-                    res = (a * 9/5) + 32;
-                // Celcius to Kelvin
-                } else if((opt == 'c') && (opt2 == 'k')){
-                    res = (a + 273.15);
-                // Celcius to Reamur
-                } else if((opt == 'c') && (opt2 == 'r')){
-                    res = (a * 4 / 5);
+                if(isNaN(a)){
+                    a_style.border = "2px solid #3EAF7C";
+                    res = "-";
+                } else {
+                    a_style.border = "none";
 
-                // Fahrenheit to Celcius
-                } else if((opt == 'f') && (opt2 == 'c')){
-                    res = (5/9 * (a-32));
-                // Fahrenheit to Reamur
-                } else if((opt == 'f') && (opt2 == 'r')){
-                    res = (a - 32) * 4/9;
-                // Fahrenheit to Kelvin
-                } else if((opt == 'f') && (opt2 == 'k')){
-                    res = (a - 32) * 5/9 + 273.15;
-                
-                // Reamur to Celcius
-                } else if((opt == 'r') && (opt2 == 'c')){
-                    res = (a / 4 * 5);	
-                // Reamur to Fahrenheit
-                } else if((opt == 'r') && (opt2 == 'f')){
-                    res = (a * 9/4) + 32;
-                // Reamur to Kelvin
-                } else if((opt == 'r') && (opt2 == 'k')){
-                    res = (a / 4 * 5) + 273.15;
+                    // Celcius to Fahrenheit
+                    if((opt == 'c') && (opt2 == 'f')){
+                        res = (a * 9/5) + 32;
+                    // Celcius to Kelvin
+                    } else if((opt == 'c') && (opt2 == 'k')){
+                        res = (a + 273.15);
+                    // Celcius to Reamur
+                    } else if((opt == 'c') && (opt2 == 'r')){
+                        res = (a * 4 / 5);
 
-                // Kelvin to Celcius
-                } else if((opt == 'k') && (opt2 == 'c')){
-                    res = (a - 273.15);
-                // Kelvin to Fahrenheit
-                } else if((opt == 'k') && (opt2 == 'f')){
-                    res = (a - 273.15) * 9/5 + 32;
-                // Kelvin to Reamur
-                } else if((opt == 'k') && (opt2 == 'r')){
-                    res = (a - 273.15) * 4/5;
+                    // Fahrenheit to Celcius
+                    } else if((opt == 'f') && (opt2 == 'c')){
+                        res = (5/9 * (a-32));
+                    // Fahrenheit to Reamur
+                    } else if((opt == 'f') && (opt2 == 'r')){
+                        res = (a - 32) * 4/9;
+                    // Fahrenheit to Kelvin
+                    } else if((opt == 'f') && (opt2 == 'k')){
+                        res = (a - 32) * 5/9 + 273.15;
+                    
+                    // Reamur to Celcius
+                    } else if((opt == 'r') && (opt2 == 'c')){
+                        res = (a / 4 * 5);	
+                    // Reamur to Fahrenheit
+                    } else if((opt == 'r') && (opt2 == 'f')){
+                        res = (a * 9/4) + 32;
+                    // Reamur to Kelvin
+                    } else if((opt == 'r') && (opt2 == 'k')){
+                        res = (a / 4 * 5) + 273.15;
+
+                    // Kelvin to Celcius
+                    } else if((opt == 'k') && (opt2 == 'c')){
+                        res = (a - 273.15);
+                    // Kelvin to Fahrenheit
+                    } else if((opt == 'k') && (opt2 == 'f')){
+                        res = (a - 273.15) * 9/5 + 32;
+                    // Kelvin to Reamur
+                    } else if((opt == 'k') && (opt2 == 'r')){
+                        res = (a - 273.15) * 4/5;
+                    }
+
+                    //Same unit
+                    if(typeof res == "undefined"){
+                        res = a;
+                    }
                 }
 
-                //Same unit
-                if(typeof res == "undefined"){
-                    res = a;
-                }
                 document.getElementById("result_temp").value = res;
             }
         }
