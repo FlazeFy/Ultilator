@@ -16,13 +16,20 @@
                 let a_style = document.getElementById("number_a_2dgeo").style;
                 let b = "null"
                 let b_style
+                let c = "null"
+                let c_style
 
                 //FIx this shit...
                 //Input id cant be detected
                 if(method != "squ"){
                     b = parseInt(document.getElementById("number_b_2dgeo").value);
                     b_style = document.getElementById("number_b_2dgeo").style;
-                } 
+                }
+                if(method == "tra"){
+                    c = parseInt(document.getElementById("number_c_2dgeo").value);
+                    c_style = document.getElementById("number_c_2dgeo").style;
+                }
+                
                 var res
 
                 //Check input value
@@ -40,11 +47,13 @@
                     
                     if(method == "squ"){
                         res = a * a;
-                    } else if(method == "tri"){
+                    } else if(method == "tri" || method == "dia"){
                         res = 0.5 * a * b;
-                    } else if(method == "rec"){
+                    } else if(method == "rec" || method == "par"){
                         res = a * b;
-                    }
+                    } else if(method == "tra"){
+                        res = 0.5 * (a + b) * c;
+                    } 
                 }
 
                 document.getElementById("result_2dgeo").value = res;
@@ -63,7 +72,7 @@
             <div class="col-lg-4 col-sm-6">
                 <button class="btn btn-count" 
                     @click="a_geo='Side'; active='squ'; img_geo='square.png'; count2dgeo(active);"
-                    >Square {{active}}</button>
+                    >Square</button>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <button class="btn btn-count" 
@@ -76,13 +85,19 @@
                     >Rectangular</button>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <button class="btn btn-count">Trapezoid</button>
+                <button class="btn btn-count"
+                    @click="a_geo='Top Base'; b_geo='Bottom Base'; c_geo='Height'; active='tra'; img_geo='trapezoid.png'; count2dgeo(active);"
+                    >Trapezoid</button>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <button class="btn btn-count">Diamond</button>
+                <button class="btn btn-count"
+                    @click="a_geo='Diagonal 1'; b_geo='Diagonal 2'; active='dia'; img_geo='diamond.png'; count2dgeo(active);"
+                    >Diamond</button>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <button class="btn btn-count">Parallelogram</button>
+                <button class="btn btn-count"
+                    @click="a_geo='Base'; b_geo='Height'; active='par'; img_geo='parallelogram.png'; count2dgeo(active);"
+                    >Parallelogram</button>
             </div>
             <div class="col-lg-4 col-sm-6">
                 <button class="btn btn-count">Kite</button>
@@ -104,9 +119,9 @@
 
                 <!--Geometry view-->
                 <div class="geo-holder">
-                    <img class="img img-fluid" :src="base_assets + img_geo" width="240" height="240" />
+                    <img class="img img-fluid" :src="base_assets + img_geo" width="280" height="280" />
                     <template v-if="active == 'squ'">
-                        <div class="geo-input" style="top:0px; left:37%;">
+                        <div class="geo-input" style="top:10px; left:37%;">
                             <div class="form-floating">
                                 <input type="number" class="form-control" id="numberGeo_a_2dgeo">
                                 <label for="floatingInput">{{ a_geo }}</label>
@@ -114,7 +129,7 @@
                         </div>
                     </template>
                     <template v-else-if="active == 'tri'">
-                        <div class="geo-input" style="top:0px; left:37%;">
+                        <div class="geo-input" style="bottom:0px; left:37%;">
                             <div class="form-floating">
                                 <input type="number" class="form-control" id="numberGeo_a_2dgeo">
                                 <label for="floatingInput">{{ a_geo }}</label>
@@ -128,13 +143,61 @@
                         </div>
                     </template>
                     <template v-else-if="active == 'rec'">
+                        <div class="geo-input" style="top:10px; left:36%;">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="numberGeo_a_2dgeo">
+                                <label for="floatingInput">{{ a_geo }}</label>
+                            </div>
+                        </div>
+                        <div class="geo-input" style="bottom:100px; left:30px;">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="numberGeo_b_2dgeo">
+                                <label for="floatingInput">{{ b_geo }}</label>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-else-if="active == 'tra'">
+                        <div class="geo-input" style="top:10px; left:35%;">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="numberGeo_a_2dgeo">
+                                <label for="floatingInput">{{ a_geo }}</label>
+                            </div>
+                        </div>
+                        <div class="geo-input" style="bottom:10px; left:35%;">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="numberGeo_b_2dgeo">
+                                <label for="floatingInput">{{ b_geo }}</label>
+                            </div>
+                        </div>
+                        <div class="geo-input" style="bottom:100px; left:50px;">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="numberGeo_c_2dgeo">
+                                <label for="floatingInput">{{ c_geo }}</label>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-else-if="active == 'dia'">
                         <div class="geo-input" style="top:0px; left:37%;">
                             <div class="form-floating">
                                 <input type="number" class="form-control" id="numberGeo_a_2dgeo">
                                 <label for="floatingInput">{{ a_geo }}</label>
                             </div>
                         </div>
-                        <div class="geo-input" style="bottom:80px; left:10px;">
+                        <div class="geo-input" style="bottom:100px; left:30px;">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="numberGeo_b_2dgeo">
+                                <label for="floatingInput">{{ b_geo }}</label>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-else-if="active == 'par'">
+                        <div class="geo-input" style="top:10px; left:45%;">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="numberGeo_a_2dgeo">
+                                <label for="floatingInput">{{ a_geo }}</label>
+                            </div>
+                        </div>
+                        <div class="geo-input" style="bottom:100px; left:50px;">
                             <div class="form-floating">
                                 <input type="number" class="form-control" id="numberGeo_b_2dgeo">
                                 <label for="floatingInput">{{ b_geo }}</label>
@@ -154,9 +217,15 @@
                             <input type="number" class="form-control" id="number_a_2dgeo" @change="count2dgeo(active)">
                             <label for="floatingInput">{{ a_geo }}</label>
                         </div>
+                        <div v-if="active == 'tra'">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="number_c_2dgeo" @change="count2dgeo(active)">
+                                <label for="floatingInput">{{ c_geo }}</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
-                        <div v-if="active == 'tri' || active == 'rec' ">
+                        <div v-if="active == 'tri' || active == 'rec' || active == 'tra' || active == 'dia' || active == 'par'">
                             <div class="form-floating">
                                 <input type="number" class="form-control" id="number_b_2dgeo" @change="count2dgeo(active)">
                                 <label for="floatingInput">{{ b_geo }}</label>
@@ -186,6 +255,12 @@
         position: absolute !important;
     }
     .geo-input .form-floating{
-        max-width: 75px;
+        max-width: 90px;
+    }
+    .form-floating label{
+        font-size: 14px;
+        white-space: nowrap;
+        padding-inline: 10px;
+        padding-top: 10px;
     }
 </style>
