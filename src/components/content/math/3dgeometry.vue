@@ -53,6 +53,14 @@
                         res = 2 * ((a * b) + (a * c) + (b * c));
                     } else if(method == "sph"){
                         res = 4 * 3.14 * a * a;
+                    } else if(method == "cyl"){
+                        res = 2 * 3.14 * a * (b + a);
+                    } else if(method == "con"){
+                        res = 3.14 * a * (a + b);
+                    } else if(method == "spy"){
+                        res = a * a + (1/2 * a * b * 4);
+                    } else if(method == "pri"){
+                        res = 2 * ( 1/2 * a * b) + (a * 3) * b; //Equilateral Triangular Prism  
                     } 
                 }
 
@@ -84,6 +92,26 @@
                     @click="a_geo='Radius'; active='sph'; img_geo='sphere.png'; count3dgeo(active);"
                     >Sphere</button>
             </div>
+            <div class="col-lg-4 col-sm-6">
+                <button class="btn btn-count" 
+                    @click="a_geo='Radius'; b_geo='Height'; active='cyl'; img_geo='cylinder.png'; count3dgeo(active);"
+                    >Cylinder</button>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <button class="btn btn-count" 
+                    @click="a_geo='Radius'; b_geo='Slant'; active='con'; img_geo='cone.png'; count3dgeo(active);"
+                    >Cone</button>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <button class="btn btn-count" 
+                    @click="a_geo='Base'; b_geo='Height'; active='spy'; img_geo='squarepyramid.png'; count3dgeo(active);"
+                    >Square Pyramid</button>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <button class="btn btn-count" 
+                    @click="a_geo='Base'; b_geo='Height'; active='pri'; img_geo='prism.png'; count3dgeo(active);"
+                    >Prism</button>
+            </div>
         </div>
 
         <div class="row">
@@ -101,6 +129,35 @@
                             </div>
                         </div>
                     </template>
+                    <template v-if="active == 'cyl' || active == 'con' || active == 'pri'">
+                        <div class="geo-input" style="bottom:10px; right:40%;">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="numberGeo_a_3dgeo">
+                                <label for="floatingInput">{{ a_geo }}</label>
+                            </div>
+                        </div>
+                        <div class="geo-input" style="bottom:100px; right:10%;">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="numberGeo_b_3dgeo">
+                                <label for="floatingInput">{{ b_geo }}</label>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-if="active == 'spy'">
+                        <div class="geo-input" style="bottom:10px; right:40%;">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="numberGeo_a_3dgeo">
+                                <label for="floatingInput">{{ a_geo }}</label>
+                            </div>
+                        </div>
+                        <div class="geo-input" style="bottom:120px; right:30%;">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="numberGeo_b_3dgeo">
+                                <label for="floatingInput">{{ b_geo }}</label>
+                            </div>
+                        </div>
+                    </template>
+
                     <template v-if="active == 'cbd'">
                         <div class="geo-input" style="bottom:0px; left:25%;">
                             <div class="form-floating">
@@ -142,7 +199,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6">
-                        <div v-if="active == 'cbd'">
+                        <div v-if="active == 'cbd' || active == 'con' || active == 'cyl' || active == 'spy' || active == 'pri'">
                             <div class="form-floating">
                                 <input type="number" class="form-control" id="number_b_3dgeo" @change="count3dgeo(active)">
                                 <label for="floatingInput">{{ b_geo }}</label>
