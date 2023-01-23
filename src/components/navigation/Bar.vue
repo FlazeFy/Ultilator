@@ -20,7 +20,7 @@
             <DocumentationIcon />
         </template>
         <template #heading>Math</template>
-            Simple Math, GCD & LCM
+            Simple Math, 2D Geometry, 3D Geometry
         </NavLink>
     </router-link>
 
