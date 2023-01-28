@@ -114,14 +114,14 @@ body {
 }
 
 /*Input*/
-input.form-control, input.form-control:disabled, select.form-select{
+input.form-control, textarea.form-control, input.form-control:disabled, select.form-select{
   background: #212121;
   border: none;
   margin: 6px;
   color:#3EAF7C !important;
   font-weight: 500;
 }
-input.form-control:focus{
+input.form-control:focus, textarea.form-control:focus{
   background: #212121;
   box-shadow: none;
 }
