@@ -114,6 +114,13 @@
 
                 var quartiles = "Q1 : " + q1 + ", Q2 : " + q2 + ", Q3 : " + q3
 
+                //Interquartiles
+                var interquartiles = q3 - q1
+
+                //Lower & Upper fence
+                var upfence = q3 + (1.5 * interquartiles)
+                var lowfence = q1 - (1.5 * interquartiles)
+
                 document.getElementById("result_mean").value = mean
                 document.getElementById("result_median").value = median
                 document.getElementById("result_mode").value = mode
@@ -124,6 +131,9 @@
                 document.getElementById("result_confidence").value = confidence
                 document.getElementById("result_sdeviation").value = dev
                 document.getElementById("result_quartiles").value = quartiles
+                document.getElementById("result_interquartiles").value = interquartiles
+                document.getElementById("result_upper_fence").value = upfence
+                document.getElementById("result_lower_fence").value = lowfence
             }
         }
     }
@@ -197,6 +207,24 @@
                 <div class="form-floating">
                     <input type="text" class="form-control" id="result_quartiles" disabled>
                     <label for="floatingInput">Quartiles</label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="result_interquartiles" disabled>
+                    <label for="floatingInput">Interquartiles</label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="result_lower_fence" disabled>
+                    <label for="floatingInput">Lower Fence</label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="result_upper_fence" disabled>
+                    <label for="floatingInput">Upper Fence</label>
                 </div>
             </div>
         </div>
