@@ -7,9 +7,7 @@
         },
         methods: {
             countAll() {
-                // var list = [10, 21, 49, 23, 14, 31, 14, 19, 14, 57, 38, 28, 68, 7, 10, 7, 7, 4, 7]
-                //check this shit
-                var list = document.getElementById("number_list").value.split(", ").map(Number); 
+                var list = document.getElementById("number_list").value.trim().split(",").map(Number); 
 
                 //Length of list
                 var n = list.length
@@ -62,14 +60,66 @@
                 }
 
                 //Standard Deviation
+                var dev = 0
+                for(var i = 0; i < n; i++){
+                    dev += (list[i] - mean) * (list[i] - mean) 
+                }
+
+                dev = Math.sqrt(dev / n).toFixed(4)
 
                 //Confidence interval
                 var sample = n - 1
                 var confidence_level = 0.95 // for now
                 var t_distribution = 2.262 // must be inputed by user
-                var sdeviation = 25 / Math. sqrt(n)
-                var confidence = mean - t_distribution * sdeviation + " " + mean + t_distribution * sdeviation
+                var sdeviation = dev / Math.sqrt(n)
+                var upperLimit = mean - t_distribution * sdeviation
+                var bottomLimit = mean + t_distribution * sdeviation
+                var confidence = parseFloat(upperLimit).toFixed(4) + " to " + parseFloat(bottomLimit).toFixed(4)
 
+                //Quartiles
+                //Check this shit!!!
+                var q1_index = Math.round((n + 1) / 4) - 1
+                var q2_index = Math.round((n + 1) / 2) - 1
+                var q3_index = Math.round(3 * (n + 1) / 4) - 1
+                
+                if(n % 2 != 0){ //Even number
+                    if((n + 1) % 4 == 0){
+                        q1_index = Math.round((((n - 1) / 4) + ((n + 3) / 4)) / 2)
+                        q2_index = Math.round((2 * (n + 1)) / 4)
+                        q3_index = Math.round((((3 * n + 1) / 4) + ((3 * n + 5) / 4)) / 2)
+
+                        var q1 = sort[q1_index - 1]
+                        var q2 = (sort[q2_index - 2] + sort[q2_index - 1]) / 2
+                        var q3 = (sort[q3_index - 2] + sort[q3_index - 1]) / 2
+                    } else {
+                        var q1 = (sort[q1_index - 1] + sort[q1_index]) / 2
+                        var q2 = sort[q2_index]
+                        var q3 = (sort[q3_index - 1] + sort[q3_index]) / 2
+                    }
+                } else { //Odd number
+                    if(n % 4 == 0){
+                        q1_index = Math.round((n + 2 )/ 4)
+                        q2_index = Math.round(((n / 2) + (n / 2 + 1)) / 2)
+                        q3_index = Math.round((((3 * n + 1) / 4) + ((3 * n + 5) / 4)) / 2)
+
+                        var q1 = (sort[q1_index - 2] + sort[q1_index - 1]) / 2
+                        var q2 = (sort[q2_index - 2] + sort[q2_index - 1]) / 2
+                        var q3 = (sort[q3_index - 2] + sort[q3_index - 1]) / 2
+                    } else {
+                        var q1 = sort[q1_index]
+                        var q2 = (sort[q2_index - 1] + sort[q2_index]) / 2
+                        var q3 = sort[q3_index]
+                    }
+                }
+
+                var quartiles = "Q1 : " + q1 + ", Q2 : " + q2 + ", Q3 : " + q3
+
+                //Interquartiles
+                var interquartiles = q3 - q1
+
+                //Lower & Upper fence
+                var upfence = q3 + (1.5 * interquartiles)
+                var lowfence = q1 - (1.5 * interquartiles)
 
                 document.getElementById("result_mean").value = mean
                 document.getElementById("result_median").value = median
@@ -79,7 +129,11 @@
                 document.getElementById("result_smallest").value = smallest
                 document.getElementById("result_range").value = largest - smallest
                 document.getElementById("result_confidence").value = confidence
-                //document.getElementById("result_sdeviation").value = sdeviation
+                document.getElementById("result_sdeviation").value = dev
+                document.getElementById("result_quartiles").value = quartiles
+                document.getElementById("result_interquartiles").value = interquartiles
+                document.getElementById("result_upper_fence").value = upfence
+                document.getElementById("result_lower_fence").value = lowfence
             }
         }
     }
@@ -143,10 +197,34 @@
                     <label for="floatingInput">Standard Deviation</label>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-floating">
                     <input type="text" class="form-control" id="result_confidence" disabled>
                     <label for="floatingInput">Confidence Interval</label>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="result_quartiles" disabled>
+                    <label for="floatingInput">Quartiles</label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="result_interquartiles" disabled>
+                    <label for="floatingInput">Interquartiles</label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="result_lower_fence" disabled>
+                    <label for="floatingInput">Lower Fence</label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="result_upper_fence" disabled>
+                    <label for="floatingInput">Upper Fence</label>
                 </div>
             </div>
         </div>

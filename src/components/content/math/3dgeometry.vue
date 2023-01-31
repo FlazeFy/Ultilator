@@ -7,7 +7,7 @@
                 active: "cub",
 
                 img_geo: "cube.png",
-                base_assets: "src/assets/content/math/"
+                base_assets: "https://leonardhors.site/public/assets/img/content/math/"
             }
         },
         methods: {

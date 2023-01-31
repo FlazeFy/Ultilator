@@ -7,7 +7,7 @@
                 active: "squ",
 
                 img_geo: "square.png",
-                base_assets: "src/assets/content/math/"
+                base_assets: "https://leonardhors.site/public/assets/img/content/math/"
             }
         },
         methods: {
