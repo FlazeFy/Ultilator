@@ -113,6 +113,21 @@ body {
   background: #3a60ea;
 }
 
+.btn-list-random{
+  background: #3a60ea;
+  color: whitesmoke !important;
+  border: none !important;
+  display: inline-block;
+  margin-inline: 5px;
+  margin-top: 7px;
+}
+
+.btn-list-random:hover{
+  background: #df4759;
+}
+
+
+
 /*Input*/
 input.form-control, textarea.form-control, input.form-control:disabled, select.form-select{
   background: #212121;
