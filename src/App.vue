@@ -6,7 +6,9 @@
   <main>
     <div class="row">
       <div class="col-3">
+        <div class="nav-holder">
         <Navbar/>
+        </div>
       </div>
       <div class="col-9">
         <!--Content-->
