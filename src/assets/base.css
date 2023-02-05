@@ -151,3 +151,18 @@ input.form-control:focus, textarea.form-control:focus{
 .container-title{
   color:whitesmoke !important;
 }
+.winner-text{
+  font-weight: bold;
+  font-size: 34px;
+  color: #3EAF7C;
+}
+
+/*Modal*/
+.modal-content{
+  background: #222222 !important;
+}
+
+.nav-holder{
+  top: 15px !important;
+  position: sticky !important;
+}
