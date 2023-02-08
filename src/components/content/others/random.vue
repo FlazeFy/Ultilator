@@ -15,6 +15,20 @@
 
                 document.getElementById("result_winner").innerHTML = '<h4 class="mt-4">The winner is <br><span class="winner-text">' + winner + '</span></h4>';
                 document.getElementById("result_value").value = res;
+            },
+            addValue(event, random_list){
+                let val = event.target.value
+                let input_style = document.getElementById("add_data").style
+                let warning = document.getElementById("text_warning")
+
+                if(val.trim().length > 0){
+                    random_list.push(val)
+                    input_style.border = "none"
+                    warning.innerHTML = ""
+                } else {
+                    input_style.border = "2px solid #FD7053"
+                    warning.innerHTML = "Input can't be empty!"
+                }
             }
         }
     }
@@ -24,10 +38,14 @@
     <div class="container">
         <h6 class="container-title">Random Picker</h6>
         <div class="form-floating">
-            <input @change="event => random_list.push(event.target.value)" class="form-control" id="add_data" required>
+            <input @change="addValue($event, random_list)" class="form-control" id="add_data" required>
             <label for="floatingInput">Add Item</label>
         </div>
-        <p class="text-primary mb-3">Press Enter or unhover the input to add new item</p>
+        <p class="text-danger mb-3" id="text_warning"></p>
+        <ul class="text-primary mb-3">
+            <li>Press Enter or unhover the input to add new item</li>
+            <li>Click the item to remove the item</li>
+        </ul>
 
         <h6>Showing <b class="text-primary">{{ random_list.length }}</b> item</h6>
         <div v-for="(item, index) in random_list" class="d-inline">

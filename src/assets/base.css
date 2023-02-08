@@ -145,6 +145,9 @@ input.form-control:focus, textarea.form-control:focus{
 .text-primary{
   color: #3EAF7C !important;
 }
+.text-danger{
+  color:#FD7053 !important;
+}
 .brand{
   font-weight: 500 !important;
 }

@@ -20,7 +20,7 @@
             <DocumentationIcon />
         </template>
         <template #heading>Math</template>
-            Simple Math, 2D Geometry, 3D Geometry
+            Simple Math, 2D & 3D Geometry, Statistic
         </NavLink>
     </router-link>
 
@@ -40,7 +40,7 @@
             <DocumentationIcon />
         </template>
         <template #heading>Physics</template>
-            Temperature
+            Temperature, Speed
         </NavLink>
     </router-link>
 
